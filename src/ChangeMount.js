@@ -31,21 +31,18 @@ module.exports = class ChangeMount {
     this._index = index;
     this._from = from;
     this._to = to;
+    this._page = 0;
   }
 
   async run() {
     const records = [];
     let hits = await this._fetchFirst();
-    let page = 0;
 
     do {
-      if (page > 0) {
-        // eslint-disable-next-line no-await-in-loop
-        hits = await this._fetch(page);
-      }
       records.push(...this._process(hits));
-      page += 1;
-    } while (page < this._pages);
+      // eslint-disable-next-line no-await-in-loop
+      hits = await this._fetchNext();
+    } while (hits);
 
     await this._index.partialUpdateObjects(records);
   }
@@ -56,9 +53,13 @@ module.exports = class ChangeMount {
     return result.hits;
   }
 
-  async _fetch(page) {
-    const result = await this._index.search('', { attributesToRetrieve, page });
-    return result.hits;
+  async _fetchNext() {
+    this._page += 1;
+    if (this._page < this._pages) {
+      const result = await this._index.search('', { attributesToRetrieve, page: this._page });
+      return result.hits;
+    }
+    return null;
   }
 
   _process(hits) {
