@@ -1,0 +1,40 @@
+{
+  "name": "@dpfister/changemount",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Rename a mount in all paths in an Algolia index",
+  "main": "src/index.js",
+  "scripts": {
+    "test": " nyc --reporter=text --reporter=lcov -i -g 'Post-Deploy' --check-coverage --branches 20 --statements 50 --lines 55 mocha",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpfister/changemount"
+  },
+  "author": "Dominique Pfister",
+  "bugs": {
+    "url": "https://github.com/dpfister/changemount"
+  },
+  "dependencies": {
+    "algoliasearch": "4.1.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@adobe/eslint-config-helix": "1.1.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-header": "3.0.0",
+    "eslint-plugin-import": "2.20.1",
+    "lint-staged": "10.0.8",
+    "mocha": "7.1.0",
+    "nyc": "15.0.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npx lint-staged"
+    }
+  }
+}
