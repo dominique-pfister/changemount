@@ -4,6 +4,9 @@
   "private": true,
   "description": "Rename a mount in all paths in an Algolia index",
   "main": "src/index.js",
+  "bin": {
+    "changemount": "src/index.js"
+  },
   "scripts": {
     "test": " nyc --reporter=text --reporter=lcov -i -g 'Post-Deploy' --check-coverage --branches 20 --statements 50 --lines 55 mocha",
     "lint": "./node_modules/.bin/eslint ."
