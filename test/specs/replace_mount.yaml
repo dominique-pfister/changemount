@@ -1,0 +1,19 @@
+input:
+  - path: ms/en/archive/2020/starting-distance-learning.html
+    objectID: master--ms/en/archive/2020/starting-distance-learning.html
+  - path: other/test.html
+    objectID: master--other/test.html
+from: /ms/
+to: /g/
+output:
+  - path: g/en/archive/2020/starting-distance-learning.html
+    objectID: master--ms/en/archive/2020/starting-distance-learning.html
+    parents:
+      - /
+      - /g
+      - /g/en
+      - /g/en/archive
+      - /g/en/archive/2020
+    dir: g/en/archive/2020
+  - path: other/test.html
+    objectID: master--other/test.html

@@ -31,6 +31,8 @@ module.exports = class ChangeMount {
     this._index = index;
     this._from = from;
     this._to = to;
+    this._fromPrefixLen = from.length - 1;
+    this._toPrefix = to.substr(1);
     this._page = 0;
   }
 
@@ -81,7 +83,6 @@ module.exports = class ChangeMount {
   }
 
   _replace(path) {
-    const suffix = (this._from !== '/' ? path.substr(this._from.substr(1).length) : path);
-    return this._to !== '/' ? `${this._to.substr(1)}:${suffix}` : suffix;
+    return `${this._toPrefix}${path.substr(this._fromPrefixLen)}`;
   }
 };

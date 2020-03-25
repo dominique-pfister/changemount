@@ -1,6 +1,5 @@
-#!/usr/bin/env node
 /*
- * Copyright 2020 Adobe. All rights reserved.
+ * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License. You may obtain a copy
  * of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -11,12 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-const CLI = require('./CLI.js');
-require('dotenv').config();
+'use strict';
 
-new CLI(process.argv.slice(2), process.env)
-  .run().catch((e) => {
-    // eslint-disable-next-line no-console
-    console.log(e.message);
-    process.exit(e.code);
-  });
+module.exports = class CLIError extends Error {
+  constructor(code, message) {
+    super(message);
+
+    this.name = 'CLIError';
+    this._code = code;
+  }
+
+  get code() {
+    return this._code;
+  }
+};
