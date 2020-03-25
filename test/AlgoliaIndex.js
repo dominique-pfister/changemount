@@ -12,23 +12,26 @@
 
 'use strict';
 
+const HITS_PER_PAGE = 2;
+
 /**
  * Algolia compatible read-only index loaded from file for testing.
  */
 module.exports = class AlgoliaIndex {
   constructor(contents) {
     this._contents = contents;
+    this._nbPages = Math.ceil(contents.length / HITS_PER_PAGE);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  search(_, { page }) {
-    if (page > 0) {
+  search(_, { page = 0 }) {
+    if (page >= this._nbPages) {
       return null;
     }
     return {
-      nbPages: 1,
+      nbPages: this._nbPages,
       nbHits: this.contents.length,
-      hits: this.contents,
+      hits: this.contents.slice(page * HITS_PER_PAGE, (page + 1) * HITS_PER_PAGE),
     };
   }
 

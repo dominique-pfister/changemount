@@ -3,6 +3,8 @@ input:
     objectID: master--ms/en/archive/2020/starting-distance-learning.html
   - path: other/test.html
     objectID: master--other/test.html
+  - path: ms/en/archive/2020/illuminate-your-animation-meet-neon-nikki.html
+    objectID: master--ms/en/archive/2020/illuminate-your-animation-meet-neon-nikki.html
 from: /ms/
 to: /
 output:
@@ -16,3 +18,11 @@ output:
     dir: en/archive/2020
   - path: other/test.html
     objectID: master--other/test.html
+  - path: en/archive/2020/illuminate-your-animation-meet-neon-nikki.html
+    objectID: master--ms/en/archive/2020/illuminate-your-animation-meet-neon-nikki.html
+    parents:
+      - /
+      - /en
+      - /en/archive
+      - /en/archive/2020
+    dir: en/archive/2020
